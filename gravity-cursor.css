@@ -15,7 +15,7 @@ body.gravity-loaded .gravity-cursor {
   background-color: rgba(0,0,0,.2);
   top: 0;
   left: 0;
-  opacity: 0;
+  /* opacity: 0; */
   pointer-events: none;
   transition: .1s opacity;
 }
@@ -26,6 +26,7 @@ body.gravity-loaded.gravity-activated:not(.orbitting) .gravity-cursor {
 
 body.gravity-loaded.orbitting .gravity-cursor {
   opacity: 0;
+  transition: .2s top, .2s left, .1s opacity;
 }
 
 body.gravity-loaded .has-gravity {

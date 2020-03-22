@@ -39,8 +39,8 @@ p {
 }
 
 .header {
-  background-color: var(--gray-100);
   padding: 1rem;
+  padding-bottom: 0;
 }
 
 .header .container {
@@ -210,4 +210,13 @@ input:focus + div.has-gravity {
 
 ::placeholder {
   color: var(--gray-700);
+}
+
+.form {
+  margin: 30px auto;
+  display: flex;
+}
+
+.form button {
+  margin-left: 20px;
 }

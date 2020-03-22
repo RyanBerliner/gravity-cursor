@@ -5,8 +5,9 @@ document.addEventListener("DOMContentLoaded", function() {
   var prev = -1;
 
   var orbitTransforms = {x: 0,y: 0};
-  var pullDistance = 0;
+  var pullDistance = 10;
   var cursorSize = 25;
+  var cursorLocation = {x: 0, y: 0};
 
   // Add cursor element
   var cursor = document.createElement("span");
@@ -55,18 +56,26 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 
     // Position the cursor
-    var cursorX = event.clientX - (cursor.offsetWidth / 2);
-    var cursorY = event.clientY - (cursor.offsetHeight / 2);
-    cursor.style.left = cursorX + 'px';
-    cursor.style.top = cursorY + 'px';
+    var perfectCursorLocation = {
+      x: event.clientX - (cursor.offsetWidth / 2),
+      y: event.clientY - (cursor.offsetHeight / 2)
+    }
 
     // Keep track of whether we are in orbit
     var isInOrbit = false;
+    var perfectOrbitTransforms;
+    var orbitCenter;
+    var orbitH;
+    var orbitW;
 
     // Check if we should be orbitting any elements
     for (var i = 0; i < gravitationals.length; i++) {
       var pullBounding = gravitationals[i].pullBounding;
-      if (pullBounding.top <= cursorY && pullBounding.bottom >= cursorY && pullBounding.left <= cursorX && pullBounding.right >= cursorX) {
+      if (pullBounding.top <= perfectCursorLocation.y 
+          && pullBounding.bottom >= perfectCursorLocation.y 
+          && pullBounding.left <= perfectCursorLocation.x 
+          && pullBounding.right >= perfectCursorLocation.x) {
+
         // In orbit
         isInOrbit = true;
 
@@ -87,13 +96,13 @@ document.addEventListener("DOMContentLoaded", function() {
         }
 
         // Calculate transforms
-        var width = gravitationals[i].bounding.width + (2*pullDistance);
-        var height = gravitationals[i].bounding.height + (2*pullDistance);
-        var center = {x: pullBounding.right - (width/2), y: pullBounding.bottom - (height/2 + cursorSize/2)};
+        var orbitW = gravitationals[i].bounding.width + (2*pullDistance);
+        var orbitH = gravitationals[i].bounding.height + (2*pullDistance);
+        var orbitCenter = {x: pullBounding.right - (orbitW/2), y: pullBounding.bottom - (orbitH/2 + cursorSize/2)};
 
         perfectOrbitTransforms = {
-          x: ((cursorX-center.x)/width)*3,
-          y: (cursorY-center.y)/height*7
+          x: ((perfectCursorLocation.x-orbitCenter.x)/orbitW)*3,
+          y: (perfectCursorLocation.y-orbitCenter.y)/orbitH*7
         }
 
         if (element.style.transform) {
@@ -106,7 +115,11 @@ document.addEventListener("DOMContentLoaded", function() {
           orbitTransforms = perfectOrbitTransforms;
         }
 
-        element.style.transform = `translate(${orbitTransforms.x}%, ${orbitTransforms.y}%) scale(1.07)`;
+        if (element.classList.contains('strong-y')) {
+          element.style.transform = `translate(${orbitTransforms.x}%, ${orbitTransforms.y}%) scaleY(1.3) scaleX(1.03)`;
+        } else {
+          element.style.transform = `translate(${orbitTransforms.x}%, ${orbitTransforms.y}%) scale(1.07)`;
+        }
 
         if (!element.classList.contains('currently-orbitting')) {
           element.classList.add('currently-orbitting');
@@ -139,6 +152,23 @@ document.addEventListener("DOMContentLoaded", function() {
     if (!isInOrbit && body.classList.contains('orbitting')) {
       body.classList.remove('orbitting');
     }
+
+    if (isInOrbit) {
+      if (orbitCenter) {
+        cursorLocation = {
+          x: (perfectCursorLocation.x + orbitCenter.x) / 2,
+          y: orbitCenter.y
+        }
+      }
+    } else {
+      cursorLocation = {
+        x: perfectCursorLocation.x,
+        y: perfectCursorLocation.y
+      }
+    }
+
+    cursor.style.left = cursorLocation.x + 'px';
+    cursor.style.top = cursorLocation.y + 'px';
   });
   
   // Signal loaded
