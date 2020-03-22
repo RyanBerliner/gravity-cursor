@@ -138,6 +138,7 @@ input {
   padding: .7rem 1rem;
   width: 100%;
   outline: none;
+  color: var(--gray-900);
 }
 
 input:focus + div.has-gravity {
@@ -197,4 +198,16 @@ input:focus + div.has-gravity {
 .inline-links a .currently-orbitting {
   box-shadow: 0 0 0 5px rgba(155, 44, 44, .15);
   background-color: rgba(155, 44, 44, .15);
+}
+
+::-webkit-input-placeholder { /* Edge */
+  color: var(--gray-700);
+}
+
+:-ms-input-placeholder { /* Internet Explorer 10-11 */
+  color: var(--gray-700);
+}
+
+::placeholder {
+  color: var(--gray-700);
 }
