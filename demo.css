@@ -1,0 +1,200 @@
+:root {
+  --white: #FFFFFF;
+  --gray-100: #F7FAFC;
+  --gray-200: #EDF2F7;
+  --gray-300: #E2E8F0;
+  --gray-400: #CBD5E0;
+  --gray-500: #A0AEC0;
+  --gray-600: #718096;
+  --gray-700: #4A5568;
+  --gray-800: #2D3748;
+  --gray-900: #1A202C;
+  --black: #000000;
+
+  --red-100: #FFF5F5;
+  --red-200: #FED7D7;
+  --red-300: #FEB2B2;
+  --red-400: #FC8181;
+  --red-500: #F56565;
+  --red-600: #E53E3E;
+  --red-700: #C53030;
+  --red-800: #9B2C2C;
+  --red-900: #742A2A;
+}
+
+html {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  font-size: 17px;
+  color: var(--gray-700);
+  background-color: var(--white);
+}
+
+p {
+  line-height: 1.5;
+  margin-bottom: .5em;
+}
+
+.page-wrapper {
+  min-height: 100vh;
+}
+
+.header {
+  background-color: var(--gray-100);
+  padding: 1rem;
+}
+
+.header .container {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.header ul {
+  display: flex;
+  align-items: center;
+}
+
+.icons li {
+  position: relative;
+}
+
+.icons a {
+  display: inline-block;
+  text-decoration: none;
+  color: var(--gray-900);
+  padding: .4rem .6rem;
+  border-radius: .25rem;
+  background-color: transparent;
+  position: relative;
+  z-index: 2;
+}
+
+.icons li:not(:last-child) {
+  margin-right: 10px;
+}
+
+.icons a:focus,
+.icons a.currently-orbitting {
+  background-color: var(--white);
+  box-shadow: 0 1px 2px var(--gray-500);
+}
+
+h1,h2 {
+  margin-bottom: .7rem;
+  color: var(--gray-900);
+  font-weight: 700;
+}
+
+h1 {
+  font-size: 3rem;
+}
+
+h2 {
+  font-size: 2rem;
+}
+
+.lead {
+  font-size: 1.4rem;
+  line-height: 1.3;
+  color: var(--gray-800);
+  margin-bottom: .7em;
+}
+
+.container {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+.spacer {
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}
+
+button {
+  appearance: none;
+  background-color: var(--red-600);
+  border: none;
+  color: var(--white);
+  font-size: 1rem;
+  padding: .6rem 1rem;
+  border-radius: .4rem;
+  font-weight: 600;
+  box-shadow: 0 2px 5px var(--gray-400);
+  outline: none;
+}
+
+button.currently-orbitting {
+  background-color: var(--red-800);
+  box-shadow: 0 3px 8px var(--gray-400);
+}
+
+input {
+  background-color: transparent;
+  font-size: 1rem;
+  appearance: none;
+  border: none;
+  padding: .7rem 1rem;
+  width: 100%;
+  outline: none;
+}
+
+input:focus + div.has-gravity {
+  background-color: var(--white);
+  border-color: var(--red-600);
+  box-shadow: inset 0 1px 2px var(--white), 0 0 0 4px var(--gray-300);
+}
+
+.input-wrapper {
+  position: relative;
+  width: 400px;
+}
+
+.input-wrapper input {
+  position: relative;
+  z-index: 2;
+}
+
+.input-wrapper .has-gravity {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  display: block;
+  background-color: var(--gray-300);
+  border-radius: .5rem;
+  box-shadow: inset 0 1px 2px var(--gray-400), 0 0 0 4px var(--white);
+}
+
+.inline-links a {
+  display: inline-block;
+  position: relative;
+  white-space: nowrap;
+  font-weight: 600;
+  color: var(--red-700);
+  text-decoration: none;
+  
+  padding: 0 2px;
+  margin-left: -2px;
+  margin-right: -2px;
+  line-height: 1;
+}
+
+.inline-links a .has-gravity {
+  position: absolute;
+  box-shadow: 0 0 0 5px transparent;
+  background-color: transparent;
+  border-radius: .1rem;
+  display: inline-block;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.inline-links a .currently-orbitting {
+  box-shadow: 0 0 0 5px rgba(155, 44, 44, .15);
+  background-color: rgba(155, 44, 44, .15);
+}

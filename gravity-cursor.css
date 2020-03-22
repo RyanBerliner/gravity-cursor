@@ -35,16 +35,3 @@ body.gravity-loaded .has-gravity {
 body.gravity-loaded .has-gravity.been-awhile {
   transition: none;
 }
-
-/* Custom styles */
-
-nav a {
-  text-decoration: none !important;
-  outline: none !important;
-  background-color: rgba(255,255,255,0);
-}
-
-nav a.currently-orbitting,
-nav a:focus {
-  background-color: #efefef;
-}
