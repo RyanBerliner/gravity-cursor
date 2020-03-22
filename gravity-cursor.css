@@ -15,7 +15,7 @@ body.gravity-loaded .gravity-cursor {
   background-color: rgba(0,0,0,.2);
   top: 0;
   left: 0;
-  /* opacity: 0; */
+  opacity: 0;
   pointer-events: none;
   transition: .1s opacity;
 }
